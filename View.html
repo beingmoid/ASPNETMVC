@@ -1,0 +1,76 @@
+@model POS.Models.tbl_product
+@{
+    ViewBag.Title = "createproduct";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+@Html.BeginForm("createproduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" })
+{
+<div class="col-md-8">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Edit Profile</h4>
+        </div>
+        <div class="content">
+            <form id="myForm">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Product Name:</label>
+                            @Html.TextBoxFor(x=>x.prd_name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.prd_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Product Description</label>
+                            @Html.TextBoxFor(x => x.prd_dis, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.prd_dis, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Unit Price</label>
+                            @Html.TextBoxFor(x => x.prd_selprice, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.prd_selprice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Product Category</label>
+                            @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewBag.cat, string.Empty, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(x => x.prd_fk_cat_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Sub Product Category</label>
+                            <select id="c4" class="form-control">
+                                @*<option></option>*@
+                            </select>
+                        </div>
+                        <p class="text-danger"> @ViewBag.msg_err</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Image Files</label>
+                            <input type="file" multiple id="files" name="files" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+}
